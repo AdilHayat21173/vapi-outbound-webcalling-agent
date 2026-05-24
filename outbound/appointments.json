@@ -110,5 +110,33 @@
     "notes": "",
     "created_at": "2026-05-24T03:06:27.932823",
     "updated_at": "2026-05-24T03:06:31.640274"
+  },
+  "APT-372CCD": {
+    "appointment_id": "APT-372CCD",
+    "patient_name": "Adil hayat",
+    "phone_number": "+923460990946",
+    "doctor_name": "Dr Ayaz",
+    "appointment_date": "25 May 2026",
+    "appointment_time": "4:00 PM",
+    "status": "scheduled",
+    "call_status": "failed",
+    "vapi_call_id": null,
+    "notes": "headers: {'date': 'Sun, 24 May 2026 05:19:46 GMT', 'content-type': 'application/json; charset=utf-8', 'content-length': '228', 'connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'content-security-policy': \"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; form-action 'self'; frame-ancestors 'self'; connect-src 'self' https:; worker-src 'self' blob:\", 'x-robots-tag': 'noindex', 'etag': 'W/\"e4-/uhLUiSU8+6ZBjzW3nXFaK27/pk\"', 'set-cookie': '_cfuvid=AiwfMjIcetB_Z6EF.K5faSsuuz78cdqBDR12kgPJK74-1779599985.2789643-1.0.1.1-WTnkP9pVAM2qAX3ktGhdic1dyAO9tJP86oQths6QUJY; HttpOnly; SameSite=None; Secure; Path=/; Domain=vapi.ai', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a009d8e3fafa5b2e-KHI', 'alt-svc': 'h3=\":443\"; ma=86400'}, status_code: 400, body: {'statusCode': 400, 'message': \"Couldn't start call. Free Vapi numbers do not support international calls.\", 'error': 'Bad Request', 'subscriptionLimits': {'concurrencyBlocked': False, 'concurrencyLimit': 10, 'remainingConcurrentCalls': 9}}",
+    "created_at": "2026-05-24T05:19:42.307819",
+    "updated_at": null
+  },
+  "APT-82D7B6": {
+    "appointment_id": "APT-82D7B6",
+    "patient_name": "Adil hayat",
+    "phone_number": "+13373768664",
+    "doctor_name": "Dr Ayaz",
+    "appointment_date": "25 May 2026",
+    "appointment_time": "4:00 PM",
+    "status": "scheduled",
+    "call_status": "calling",
+    "vapi_call_id": "019e586e-9cd8-7000-ba9e-f36943f34699",
+    "notes": "",
+    "created_at": "2026-05-24T05:21:43.321814",
+    "updated_at": "2026-05-24T05:21:49.754923"
   }
 }

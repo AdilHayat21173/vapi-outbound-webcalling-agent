@@ -1,11 +1,15 @@
-.env
+# Executable files
+*.exe
+
+# Python
+venv/
 __pycache__/
 *.pyc
-*.pyo
-.venv/
-venv/
-env/
-*.egg-info/
+.env
+
+# Node / Vite
+node_modules/
 dist/
-build/
-.DS_Store 
+
+# Local data
+appointments.json
