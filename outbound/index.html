@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maaz Dental Clinic — Outbound Calls</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #eef2f7;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px 60px;
+    }
+
+    .page { width: 100%; max-width: 520px; }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 30px;
+      border: 1px solid #dde6f0;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+      margin-bottom: 20px;
+    }
+
+    .clinic-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px; padding-bottom: 22px;
+      border-bottom: 1px solid #eef2f7;
+    }
+    .clinic-icon { font-size: 36px; }
+    .clinic-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; font-weight: 400; color: #16213e;
+    }
+    .clinic-sub {
+      font-size: 12px; color: #8499b5; margin-top: 2px;
+      letter-spacing: .3px; text-transform: uppercase; font-weight: 500;
+    }
+
+    .section-label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: #3d5a80;
+      text-transform: uppercase; letter-spacing: .8px; margin-bottom: 20px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    label {
+      display: block; font-size: 11px; font-weight: 600;
+      color: #5a7a9e; text-transform: uppercase;
+      letter-spacing: .7px; margin-bottom: 7px;
+    }
+    input {
+      width: 100%; padding: 13px 15px;
+      border: 1.5px solid #dde6f0; border-radius: 10px;
+      font-size: 15px; font-family: 'DM Sans', sans-serif;
+      color: #16213e; background: #f8fafc;
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    input::placeholder { color: #aab8cc; }
+    input:focus {
+      border-color: #19764f; background: #fff;
+      box-shadow: 0 0 0 3px rgba(25,118,79,.1);
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .btn {
+      width: 100%; padding: 14px 20px; border: none;
+      border-radius: 11px; font-size: 15px; font-weight: 600;
+      font-family: 'DM Sans', sans-serif; cursor: pointer;
+      transition: background .2s, transform .1s, box-shadow .2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+    .btn-call {
+      background: #19764f; color: #fff; margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(25,118,79,.25);
+    }
+    .btn-call:hover:not(:disabled) {
+      background: #155f3f;
+      box-shadow: 0 4px 16px rgba(25,118,79,.35);
+    }
+
+    .btn-refresh {
+      width: auto; padding: 10px 18px;
+      background: #3d5a80; color: #fff;
+      border-radius: 10px; font-size: 13px; font-weight: 600;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    }
+    .btn-refresh:hover { background: #2d4a6e; }
+
+    /* Status badge */
+    .status-badge {
+      display: flex; align-items: center; justify-content: center;
+      gap: 7px; margin-top: 14px; font-size: 13px;
+      font-weight: 500; color: #5a7a9e;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #8499b5; flex-shrink: 0; transition: background .3s;
+    }
+    .status-badge.success .status-dot { background: #19764f; }
+    .status-badge.error   .status-dot { background: #dc2626; }
+    .status-badge.calling .status-dot {
+      background: #f59e0b;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* Appointments table */
+    .table-header {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 14px;
+    }
+    .data-label {
+      font-size: 11px; font-weight: 600; color: #5a7a9e;
+      text-transform: uppercase; letter-spacing: .7px;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse; font-size: 13px;
+    }
+    th {
+      text-align: left; padding: 9px 10px;
+      background: #f0f4f9; color: #3d5a80;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    th:first-child { border-radius: 8px 0 0 8px; }
+    th:last-child  { border-radius: 0 8px 8px 0; }
+    td {
+      padding: 10px 10px; border-bottom: 1px solid #eef2f7;
+      color: #16213e; vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+
+    .badge {
+      display: inline-block; padding: 3px 9px;
+      border-radius: 20px; font-size: 11px; font-weight: 600;
+    }
+    .badge-scheduled        { background:#dbeafe; color:#1d4ed8; }
+    .badge-confirmed        { background:#dcfce7; color:#166534; }
+    .badge-rescheduled      { background:#fef9c3; color:#854d0e; }
+    .badge-cancelled        { background:#fee2e2; color:#991b1b; }
+    .badge-pending_confirmation { background:#f3e8ff; color:#6b21a8; }
+    .badge-calling          { background:#ffedd5; color:#c2410c; }
+    .badge-completed        { background:#d1fae5; color:#065f46; }
+
+    .empty-state {
+      text-align: center; padding: 30px;
+      color: #8499b5; font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── FORM CARD ── -->
+  <div class="card">
+    <div class="clinic-header">
+      <div class="clinic-icon">🦷</div>
+      <div style="flex:1">
+        <h1>Maaz Dental Clinic</h1>
+        <p class="clinic-sub">Outbound Call System</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn-refresh" id="refreshBtn" style="display:none">🔄</button>
+        <button class="btn-refresh" id="toggleBtn">📋 Appointments</button>
+      </div>
+    </div>
+
+    <div class="section-label">📋 Patient Details</div>
+
+    <div class="form-group">
+      <label>Patient Name</label>
+      <input id="patient_name" type="text" placeholder="Ali Khan" />
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input id="phone_number" type="tel" placeholder="+923001234567" />
+    </div>
+    <div class="form-group">
+      <label>Doctor</label>
+      <input id="doctor_name" type="text" placeholder="Dr. Maaz" />
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <label>Date</label>
+        <input id="appointment_date" type="text" placeholder="25 May 2026" />
+      </div>
+      <div class="form-group">
+        <label>Time</label>
+        <input id="appointment_time" type="text" placeholder="4:30 PM" />
+      </div>
+    </div>
+
+    <button class="btn btn-call" id="callBtn">
+      📞 Save & Start Outbound Call
+    </button>
+
+    <div id="status" class="status-badge">
+      <span class="status-dot"></span>
+      Fill in patient details and call
+    </div>
+  </div>
+
+  <!-- ── APPOINTMENTS TABLE (outside card, below) ── -->
+  <div id="tableContainer" style="display:none" class="card">
+    <div class="table-header" style="margin-bottom:14px">
+      <div class="data-label">📋 All Appointments</div>
+    </div>
+    <div id="tableInner"><div class="empty-state">Loading…</div></div>
+  </div>
+
+</div>
+
+<script>
+  const API = "http://127.0.0.1:8000";
+
+  const callBtn    = document.getElementById("callBtn");
+  const refreshBtn = document.getElementById("refreshBtn");
+  const statusEl   = document.getElementById("status");
+  const tableContainer = document.getElementById("tableContainer");
+
+  function setStatus(text, mode = "") {
+    statusEl.className = "status-badge" + (mode ? ` ${mode}` : "");
+    statusEl.innerHTML = `<span class="status-dot"></span>${text}`;
+  }
+
+  function val(id) {
+    return document.getElementById(id).value.trim();
+  }
+
+  // ── OUTBOUND CALL ──
+  callBtn.addEventListener("click", async () => {
+    const payload = {
+      patient_name:     val("patient_name"),
+      phone_number:     val("phone_number"),
+      doctor_name:      val("doctor_name"),
+      appointment_date: val("appointment_date"),
+      appointment_time: val("appointment_time"),
+    };
+
+    if (Object.values(payload).some(v => !v)) {
+      setStatus("Please fill all fields", "error");
+      return;
+    }
+
+    callBtn.disabled = true;
+    setStatus("Saving & initiating call…", "calling");
+
+    try {
+      const res  = await fetch(`${API}/outbound-call`, {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.detail || "Failed");
+
+      setStatus(
+        `✅ Call started! ID: ${data.appointment_id} | Vapi: ${data.vapi_call_id || "initiated"}`,
+        "success"
+      );
+
+      // Auto-refresh table
+      setTimeout(() => loadAppointments(), 1500);
+
+    } catch (err) {
+      setStatus("❌ " + err.message, "error");
+    } finally {
+      callBtn.disabled = false;
+    }
+  });
+
+  // ── LOAD ALL APPOINTMENTS ──
+  async function loadAppointments() {
+    refreshBtn.textContent = "Loading…";
+    try {
+      const res  = await fetch(`${API}/appointments`);
+      const data = await res.json();
+      renderTable(data);
+    } catch (err) {
+      tableInner.innerHTML = `<div class="empty-state">❌ Could not load: ${err.message}</div>`;
+    } finally {
+      refreshBtn.textContent = "🔄 Refresh";
+    }
+  }
+
+  function renderTable(data) {
+    const keys = Object.keys(data);
+    if (keys.length === 0) {
+      tableInner.innerHTML = '<div class="empty-state">No appointments yet</div>';
+      return;
+    }
+
+    // Sort newest first
+    keys.sort((a, b) =>
+      new Date(data[b].created_at) - new Date(data[a].created_at)
+    );
+
+    const rows = keys.map(k => {
+      const a = data[k];
+      const statusClass = `badge-${(a.status || "scheduled").replace(/\s/g,"-")}`;
+      const callClass   = `badge-${(a.call_status || "pending").replace(/\s/g,"-")}`;
+      return `
+        <tr>
+          <td><b>${a.appointment_id}</b></td>
+          <td>${a.patient_name}</td>
+          <td>${a.doctor_name}</td>
+          <td>${a.appointment_date}<br><small>${a.appointment_time}</small></td>
+          <td><span class="badge ${statusClass}">${a.status || "scheduled"}</span></td>
+          <td><span class="badge ${callClass}">${a.call_status || "pending"}</span></td>
+          <td style="font-size:11px;color:#6b8aaa;max-width:120px">${a.notes || "—"}</td>
+        </tr>`;
+    }).join("");
+
+    tableInner.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date/Time</th>
+            <th>Status</th>
+            <th>Call</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  const tableInner = document.getElementById("tableInner");
+  let tableVisible = false;
+
+  toggleBtn.addEventListener("click", () => {
+    tableVisible = !tableVisible;
+    tableContainer.style.display = tableVisible ? "block" : "none";
+    refreshBtn.style.display     = tableVisible ? "inline-flex" : "none";
+    toggleBtn.textContent        = tableVisible ? "🙈 Hide" : "📋 Appointments";
+    if (tableVisible) loadAppointments();
+  });
+
+  refreshBtn.addEventListener("click", loadAppointments);
+</script>
+</body>
+</html>

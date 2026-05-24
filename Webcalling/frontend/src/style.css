@@ -1,0 +1,332 @@
+/* ── Google Font ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap');
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #eef2f7;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 60px;
+}
+
+/* ── Page ── */
+.page {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Card ── */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 30px;
+  border: 1px solid #dde6f0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Clinic Header ── */
+.clinic-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.clinic-icon {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.clinic-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #16213e;
+  letter-spacing: -0.3px;
+}
+
+.clinic-sub {
+  font-size: 12px;
+  color: #8499b5;
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── Section Label ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3d5a80;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+}
+
+.section-icon {
+  font-size: 16px;
+}
+
+/* ── Form ── */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a7a9e;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 7px;
+}
+
+input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1.5px solid #dde6f0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  color: #16213e;
+  background: #f8fafc;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+input::placeholder {
+  color: #aab8cc;
+}
+
+input:focus {
+  border-color: #19764f;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(25, 118, 79, 0.1);
+}
+
+/* ── Date/Time row ── */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ── Buttons ── */
+.btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 11px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-save {
+  background: #19764f;
+  color: #ffffff;
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(25, 118, 79, 0.25);
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #155f3f;
+  box-shadow: 0 4px 16px rgba(25, 118, 79, 0.35);
+}
+
+.btn-save:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-start {
+  background: #a8c9b8;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.btn-start:not(:disabled) {
+  background: #19764f;
+  box-shadow: 0 2px 10px rgba(25, 118, 79, 0.25);
+}
+
+.btn-start:not(:disabled):hover {
+  background: #155f3f;
+  box-shadow: 0 4px 16px rgba(25, 118, 79, 0.35);
+}
+
+.btn-start:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.btn-end {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.2);
+}
+
+.btn-end:hover {
+  background: #b91c1c;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
+}
+
+/* ── Call Box ── */
+.call-box {
+  margin-top: 22px;
+  padding: 22px 20px;
+  border: 1.5px dashed #d0dce8;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.call-hint {
+  font-size: 13px;
+  color: #6b8aaa;
+  text-align: center;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* ── Status Badge ── */
+.status-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #5a7a9e;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8499b5;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.status-badge.active .status-dot {
+  background: #19764f;
+  box-shadow: 0 0 0 3px rgba(25, 118, 79, 0.2);
+  animation: pulse 1.5s infinite;
+}
+
+.status-badge.error .status-dot {
+  background: #dc2626;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Data Sections ── */
+.data-section {
+  margin-top: 22px;
+}
+
+.data-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a7a9e;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 8px;
+}
+
+.data-box {
+  background: #f0f4f9;
+  border: 1px solid #dde6f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+  font-family: 'Courier New', monospace;
+  color: #3d5a80;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.6;
+  min-height: 44px;
+}
+
+.log-box {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.log-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.log-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.log-box::-webkit-scrollbar-thumb {
+  background: #c5d3e0;
+  border-radius: 4px;
+}
+/* ── Get Appointment Row ── */
+.get-apt-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.get-apt-row input {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.btn-get {
+  width: auto;
+  padding: 13px 20px;
+  background: #3d5a80;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(61, 90, 128, 0.25);
+}
+
+.btn-get:hover:not(:disabled) {
+  background: #2d4a6e;
+  box-shadow: 0 4px 14px rgba(61, 90, 128, 0.35);
+}
+
+.btn-get:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
