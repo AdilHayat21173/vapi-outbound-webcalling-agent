@@ -5,9 +5,9 @@ import "./style.css";
 // CONFIG — fill in your credentials
 // ─────────────────────────────────────────────
 
-const VAPI_PUBLIC_KEY = "dc2d523c-043a-4a64-88b5-0a9d58856e8f";   // ← replace
-const ASSISTANT_ID    = "7e780b71-2019-4978-9f5d-e830e72dcc92"; // ← replace
-const API             = "http://127.0.0.1:8000";
+const VAPI_PUBLIC_KEY = import.meta.env.VITE_VAPI_PUBLIC_KEY;
+const ASSISTANT_ID = import.meta.env.VITE_ASSISTANT_ID;
+const API = import.meta.env.VITE_API_URL;
 
 // ─────────────────────────────────────────────
 // VAPI INIT
